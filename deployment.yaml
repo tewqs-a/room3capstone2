@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: room3-capstone2-cluster4
+    app.kubernetes.io/instance: room3-capstone2-cluster4-instance
+    app.kubernetes.io/version: '1.0.0'
+    app.kubernetes.io/managed-by: kubectl
+  name: room3-capstone2-cluster4-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: room3-capstone2-cluster4
+  template:
+    metadata:
+      labels:
+        app: room3-capstone2-cluster4
+    spec:
+    containers:
+      - image: 962804699607.dkr.ecr.us-west-2.amazonaws.com/room3-capstone2-ecr:latest
+        imagePullPolicy: Always
+        name: room3-capstone2-cluster4
+        ports:
+          - containerPort: 80
