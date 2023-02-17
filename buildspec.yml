@@ -16,3 +16,7 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - echo Docker image successfully pushed
+      - echo Restarting ECS Service...
+      - aws ecs update-service --force-new-deployment --service $SERVICE_NAME --cluster $CLUSTER_NAME
+      - echo ECS Service succesfully restarted
